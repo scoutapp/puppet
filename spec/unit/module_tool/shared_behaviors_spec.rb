@@ -130,7 +130,7 @@ describe Puppet::ModuleTool::Shared do
 
     before do
       Zlib::GzipWriter.open(stdlib_pkg) do |gzip|
-        Puppet::Util::Archive::Tar::Minitar::Writer.open(gzip) do |tar|
+        Archive::Tar::Minitar::Writer.open(gzip) do |tar|
           serialized_metadata = PSON.pretty_generate(metadata)
           tar.add_file_simple('baz/metadata.json',
             :mode => 0644,

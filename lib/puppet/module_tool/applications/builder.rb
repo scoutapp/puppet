@@ -1,5 +1,5 @@
 require 'zlib'
-require 'puppet/util/archive/tar/minitar'
+require 'archive/tar/minitar'
 require 'pathname'
 
 module Puppet::ModuleTool
@@ -43,7 +43,7 @@ module Puppet::ModuleTool
       def create_module_tar_gz(module_tar_gz)
         module_tar_gz.dirname.mkdir rescue nil
         Zlib::GzipWriter.open(module_tar_gz) do |gzip|
-          Puppet::Util::Archive::Tar::Minitar::Writer.open(gzip) do |tar|
+          Archive::Tar::Minitar::Writer.open(gzip) do |tar|
             add_metadata(tar)
             Dir.foreach(@path) do |file|
               case File.basename(file)

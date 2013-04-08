@@ -703,7 +703,7 @@ module Puppet::ModuleTool::Shared
     raise MissingPackageError, :action => @action, :requested_package => File.expand_path(name) unless File.file?(name)
     begin
       Zlib::GzipReader.open(name) do |gzip|
-        Puppet::Util::Archive::Tar::Minitar::Reader.open(gzip) do |tar|
+        Archive::Tar::Minitar::Reader.open(gzip) do |tar|
           tar.each do |entry|
             name_components = entry.full_name.split('/', 3)
             next unless (name_components.length == 2 && name_components.last == 'metadata.json')

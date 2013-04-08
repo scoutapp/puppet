@@ -35,12 +35,12 @@ describe Puppet::ModuleTool::Applications::Unpacker do
       FileUtils.stubs(:mv)
     end
 
-    it "should attempt to open the file with Zlib::GzipReader and process the yielded stream with Puppet::Util::Archive::Tar::Minitar::Reader" do
+    it "should attempt to open the file with Zlib::GzipReader and process the yielded stream with Archive::Tar::Minitar::Reader" do
       pending("porting to Windows", :if => Puppet.features.microsoft_windows?) do
-        tar = mock('Puppet::Util::Archive::Tar::Minitar::Reader')
+        tar = mock('Archive::Tar::Minitar::Reader')
         tar.expects(:each)
         gzip = mock('Zlib::GzipReader')
-        Puppet::Util::Archive::Tar::Minitar::Reader.expects(:open).with(gzip).yields(tar)
+        Archive::Tar::Minitar::Reader.expects(:open).with(gzip).yields(tar)
         Zlib::GzipReader.expects(:open).with(Pathname.new(filename)).yields(gzip)
         unpacker.run
       end

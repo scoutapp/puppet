@@ -32,6 +32,7 @@ group(:development, :test) do
   gem "sqlite3"
   gem "stomp"
   gem "tzinfo"
+  gem "minitar"
 end
 
 platforms :mswin, :mingw do

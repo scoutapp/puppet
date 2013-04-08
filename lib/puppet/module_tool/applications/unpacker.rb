@@ -1,5 +1,5 @@
 require 'zlib'
-require 'puppet/util/archive/tar/minitar'
+require 'archive/tar/minitar'
 require 'pathname'
 
 module Puppet::ModuleTool
@@ -37,7 +37,7 @@ module Puppet::ModuleTool
         begin
           begin
             Zlib::GzipReader.open(@filename) do |gzip|
-              Puppet::Util::Archive::Tar::Minitar::Reader.open(gzip) do |tar|
+              Archive::Tar::Minitar::Reader.open(gzip) do |tar|
                 tar.each do |entry|
                   destination_file = Pathname.new(entry.full_name).cleanpath
                   if destination_file.absolute? ||
