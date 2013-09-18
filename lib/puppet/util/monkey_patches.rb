@@ -1,4 +1,3 @@
-
 unless defined? JRUBY_VERSION
   Process.maxgroups = 1024
 end
@@ -26,17 +25,17 @@ class Symbol
   end
 end
 
-[Object, Exception, Integer, Struct, Date, Time, Range, Regexp, Hash, Array, Float, String, FalseClass, TrueClass, Symbol, NilClass, Class].each { |cls|
-  cls.class_eval do
-    def to_yaml(ignored=nil)
-      ZAML.dump(self)
-    end
-  end
-}
+#[Object, Exception, Integer, Struct, Date, Time, Range, Regexp, Hash, Array, Float, String, FalseClass, TrueClass, Symbol, NilClass, Class].each { |cls|
+#  cls.class_eval do
+#    def to_yaml(ignored=nil)
+#      ZAML.dump(self)
+#    end
+#  end
+#}
 
-def YAML.dump(*args)
-  ZAML.dump(*args)
-end
+#def YAML.dump(*args)
+#  ZAML.dump(*args)
+#end
 
 #
 # Workaround for bug in MRI 1.8.7, see
